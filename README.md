@@ -39,12 +39,33 @@ Publishing artifact to Nexus snapshot and release repo using maven.
 - https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#a-build-lifecycle-is-made-up-of-phases
 
 
+Maven + SonarQube
+mvn clean sonar:sonar
+-Dsonar.projectKey=JavaWebApp
+-Dsonar.host.url=http://44.203.4.255:9000
+-Dsonar.login=
 
+Before Running the deploy Command make sure to update the Nexus pom.xml and settings.xml with Nexus IP addedd, Username and Password. Make sure the plugings are defined as well
+mvn clean package sonar:sonar
+-Dsonar.projectKey=JavaWebApp-Project3
+-Dsonar.host.url=http://44.203.4.255:9000
+-Dsonar.login=
+
+Clean, Build, Test and Deploy(to Nexus)
+mvn clean package sonar:sonar deploy
+-Dsonar.projectKey=JavaWebApp-Project3
+-Dsonar.host.url=http://44.203.4.255:9000
+-Dsonar.login=
 
 
 ############################################
 
 mvn sonar:sonar \
+  -Dsonar.projectKey=JavaProject \
+  -Dsonar.host.url=http://54.225.54.116:9000 \
+  -Dsonar.login=8fadb0d513decab97b2c85eb67f6bb6c8f1467fd
+
+  mvn clean sonar:sonar deploy \
   -Dsonar.projectKey=JavaProject \
   -Dsonar.host.url=http://54.225.54.116:9000 \
   -Dsonar.login=8fadb0d513decab97b2c85eb67f6bb6c8f1467fd
